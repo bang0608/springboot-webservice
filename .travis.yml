@@ -9,29 +9,29 @@ branches:
 
 # Travis CI 서버의 Home
 # Gradle 을 통해 의존성을 받게 되면 이를 해당 디렉토리에 캐시하여, 같은 의존성은 다음 배포 시 다시 받지 않도록 설정
-cache:
-  directories:
-    - '$HOME/.m2/repository'
-    - '$HOME/.gradle'
+#cache:
+#  directories:
+#    - '$HOME/.m2/repository'
+#    - '$HOME/.gradle'
 
 # main 브런치에 푸쉬되었을 때 수행하는 명령어
 script: "./gradlew clean build"
 
-#before_deploy:
-#  - zip -r springboot-webservice *
-#  - mkdir -p deploy
-#  - mv springboot-webservice.zip deploy/springboot-webservice.zip
-#
-#deploy:
-#  - provider: s3
-#    access_key_id: $AWS_ACCESS_KEY # Travis repository settings에 설정된 값
-#    secret_access_key: $AWS_SECRET_KEY # Travis repository settings에 설정된 값
-#    bucket: banghyunwoo # S3 버킷
-#    region: ap-northeast-2
-#    skip_cleanup: true
-#    acl: private # zip 파을 접근을 private로
-#    local_dir: deploy # before_deploy에서 생성한 디렉토리
-#    wait-until-deployed: true
+before_deploy:
+  - zip -r springboot-webservice *
+  - mkdir -p deploy
+  - mv springboot-webservice.zip deploy/springboot-webservice.zip
+
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY # Travis repository settings에 설정된 값
+    secret_access_key: $AWS_SECRET_KEY # Travis repository settings에 설정된 값
+    bucket: banghyunwoo # S3 버킷
+    region: ap-northeast-2
+    skip_cleanup: true
+    acl: private # zip 파을 접근을 private로
+    local_dir: deploy # before_deploy에서 생성한 디렉토리
+    wait-until-deployed: true
 
 # CI 실행 완료시 메일로 알람
 notifications:
