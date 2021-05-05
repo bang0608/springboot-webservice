@@ -20,8 +20,4 @@ public class HelloController {
         return new HelloResponseDto(name, amount);
     }
 
-    @GetMapping("/travis")
-    public String travisTest() {
-        return "test";
-    }
 }
