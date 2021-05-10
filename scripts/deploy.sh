@@ -18,6 +18,7 @@ if [ -z "$CURRENT_PID" ]; then
     mkdir -p testDirectory
 else
     echo "> kill -15 $CURRENT_PID"
+    mkdir -p testDirectoryKill
     kill -15 $CURRENT_PID
     sleep 5
 fi
