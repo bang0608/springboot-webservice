@@ -8,11 +8,11 @@ files:
 permissions: # codedeploy 에서 EC2 서버로 넘겨준 파일들을 모두 ubuntu 권한을 갖도록 한다.
   - object: /
     pattern: "**"
-    owner: ubuntu
-    group: ubuntu
+    owner: ec2-user
+    group: ec2-user
 
 hooks:
   ApplicationStart:
     - location: deploy.sh
       timeout: 60
-      runas: ubuntu
+      runas: ec2-user
