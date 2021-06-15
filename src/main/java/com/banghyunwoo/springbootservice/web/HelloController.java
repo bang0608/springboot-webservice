@@ -1,12 +1,11 @@
 package com.banghyunwoo.springbootservice.web;
 
 import com.banghyunwoo.springbootservice.web.dto.HelloResponseDto;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import net.minidev.json.JSONObject;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @RestController
@@ -31,12 +30,31 @@ public class HelloController {
 
     @CrossOrigin("*") // CORS 애노테이션
     @GetMapping("/cookie")
-    public String cookieTest(HttpServletResponse response){
-        Cookie cookie = new Cookie("credential","cookietest");
-        cookie.setHttpOnly(true);
+    public String cookieTest(@CookieValue(value="cookie", required = false) Cookie reqCookie, HttpServletResponse response){
+        System.out.println("+111");
+        Cookie cookie = new Cookie("cookie","cookietest");
+        cookie.setMaxAge(0);
         cookie.setPath("/");
 
+        System.out.println("reqCookie ===" + reqCookie);
+
         response.addCookie(cookie);
+        response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Credentials", "true");
+        response.setHeader("Access-Control-Allow-Headers", "*");
+
         return "test";
+    }
+
+    @CrossOrigin("*") // CORS 애노테이션
+    @GetMapping("/cookie2")
+    public JSONObject cookieTest2(@CookieValue(value="cookie", required = false) Cookie reqCookie, HttpServletResponse response){
+        JSONObject json = new JSONObject();
+        System.out.println("+cookieTest222");
+        System.out.println("reqCookie ===" + reqCookie);
+
+        json.put("key", "value");
+
+        return json;
     }
 }
