@@ -1,6 +1,7 @@
 package com.banghyunwoo.springbootservice.web;
 
 import com.banghyunwoo.springbootservice.web.dto.HelloResponseDto;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -28,6 +29,7 @@ public class HelloController {
         return "test";
     }
 
+    @CrossOrigin("*") // CORS 애노테이션
     @GetMapping("/cookie")
     public String cookieTest(HttpServletResponse response){
         Cookie cookie = new Cookie("credential","cookietest");
