@@ -35,6 +35,8 @@ public class HelloController {
         Cookie cookie = new Cookie("cookie","cookietest");
         cookie.setMaxAge(0);
         cookie.setPath("/");
+        cookie.setSecure(true);
+//        cookie.setValue("SameSite=None; Secure");
 
         System.out.println("reqCookie ===" + reqCookie);
 
