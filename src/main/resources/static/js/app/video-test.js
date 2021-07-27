@@ -21,9 +21,12 @@ async function init() {
 
   const result = await fetch(url, {
     method: 'get',
-     headers: {
-       "Authorization": "Bearer helloworld"
-     }
+    mode: 'no-cors',
+//    cache: 'no-cache',
+    credentials: 'include',
+    headers: {
+      "Authorization": "Bearer helloworld"
+    }
   });
 
   const blob = await result.blob();
