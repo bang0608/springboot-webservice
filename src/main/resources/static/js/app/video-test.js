@@ -25,8 +25,8 @@ async function init() {
     cache: 'no-cache',
 //    credentials: 'include',
     headers: {
-      test : 'test'
-//      "Authorization": "Bearer helloworld"
+      test : 'test',
+      Authorization: "Bearer helloworld"
     }
   });
 
