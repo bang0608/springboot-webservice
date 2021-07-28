@@ -21,11 +21,12 @@ async function init() {
 
   const result = await fetch(url, {
     method: 'get',
-    mode: 'no-cors',
-//    cache: 'no-cache',
-    credentials: 'include',
+    mode: 'cors',
+    cache: 'no-cache',
+//    credentials: 'include',
     headers: {
-      "Authorization": "Bearer helloworld"
+      test : 'test'
+//      "Authorization": "Bearer helloworld"
     }
   });
 
